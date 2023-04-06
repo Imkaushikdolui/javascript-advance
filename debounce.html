@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" onkeyup="getdata()">
+    <script>
+        let counter = 0;
+        const getdata = () => {
+            console.log("fetching data...",counter++);
+        }
+
+        const debounce = function(fn,d){
+            let timer;
+            return function(){
+                let context = this,
+                args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(()=>{
+                    getdata.apply(context,arguments);
+                },d);
+            }
+        }
+
+        debounce(getdata,5000);
+    </script>
+</body>
+</html>
